@@ -1,0 +1,101 @@
+Student_ID,Concept,Student_Response,Faculty_Grade
+S1000,Endowment Effect,People fear losses more than they value gains.,B+
+S1001,Endowment Effect,Choice architecture can influence decisions.,A
+S1002,Anchoring Bias,Past investments affect future decisions irrationally.,B
+S1003,Hyperbolic Discounting,Risk perception changes based on framing.,C+
+S1004,Hyperbolic Discounting,Choice architecture can influence decisions.,C+
+S1005,Loss Aversion,The way choices are presented affects decisions.,F
+S1006,Loss Aversion,People rely too much on initial information.,A
+S1007,Framing Effect,Risk perception changes based on framing.,A-
+S1008,Loss Aversion,The way choices are presented affects decisions.,A+
+S1009,Status Quo Bias,The way choices are presented affects decisions.,B-
+S1010,Mental Accounting,Past investments affect future decisions irrationally.,A-
+S1011,Endowment Effect,People mentally separate their money into different categories.,F
+S1012,Hyperbolic Discounting,Risk perception changes based on framing.,B+
+S1013,Loss Aversion,People prefer the current state over change.,B+
+S1014,Sunk Cost Fallacy,Past investments affect future decisions irrationally.,C+
+S1015,Anchoring Bias,People rely too much on initial information.,B-
+S1016,Mental Accounting,Past investments affect future decisions irrationally.,A+
+S1017,Sunk Cost Fallacy,Choice architecture can influence decisions.,A+
+S1018,Nudging,People prefer the current state over change.,D
+S1019,Mental Accounting,People rely too much on initial information.,C+
+S1020,Sunk Cost Fallacy,Individuals assign more value to things they own.,C-
+S1021,Nudging,Individuals assign more value to things they own.,C-
+S1022,Sunk Cost Fallacy,Immediate rewards are valued more than future rewards.,C+
+S1023,Framing Effect,Individuals assign more value to things they own.,A-
+S1024,Status Quo Bias,People mentally separate their money into different categories.,B+
+S1025,Prospect Theory,Individuals assign more value to things they own.,C+
+S1026,Sunk Cost Fallacy,People fear losses more than they value gains.,F
+S1027,Nudging,The way choices are presented affects decisions.,C
+S1028,Sunk Cost Fallacy,Immediate rewards are valued more than future rewards.,C+
+S1029,Nudging,People fear losses more than they value gains.,B-
+S1030,Status Quo Bias,Choice architecture can influence decisions.,C
+S1031,Mental Accounting,Past investments affect future decisions irrationally.,D
+S1032,Prospect Theory,Choice architecture can influence decisions.,D
+S1033,Endowment Effect,Risk perception changes based on framing.,F
+S1034,Hyperbolic Discounting,Choice architecture can influence decisions.,A+
+S1035,Status Quo Bias,People rely too much on initial information.,C-
+S1036,Loss Aversion,Individuals assign more value to things they own.,B+
+S1037,Mental Accounting,People prefer the current state over change.,A-
+S1038,Prospect Theory,Individuals assign more value to things they own.,C+
+S1039,Anchoring Bias,People mentally separate their money into different categories.,A+
+S1040,Nudging,People rely too much on initial information.,B-
+S1041,Status Quo Bias,People prefer the current state over change.,B
+S1042,Status Quo Bias,Past investments affect future decisions irrationally.,C+
+S1043,Endowment Effect,People rely too much on initial information.,B
+S1044,Status Quo Bias,Risk perception changes based on framing.,B+
+S1045,Hyperbolic Discounting,People fear losses more than they value gains.,B-
+S1046,Mental Accounting,Choice architecture can influence decisions.,C+
+S1047,Anchoring Bias,People prefer the current state over change.,C+
+S1048,Status Quo Bias,Choice architecture can influence decisions.,C
+S1049,Status Quo Bias,Past investments affect future decisions irrationally.,D
+S1050,Prospect Theory,The way choices are presented affects decisions.,A
+S1051,Loss Aversion,Risk perception changes based on framing.,A-
+S1052,Mental Accounting,Individuals assign more value to things they own.,B-
+S1053,Endowment Effect,The way choices are presented affects decisions.,C
+S1054,Anchoring Bias,People rely too much on initial information.,B
+S1055,Endowment Effect,Individuals assign more value to things they own.,C-
+S1056,Sunk Cost Fallacy,Individuals assign more value to things they own.,B+
+S1057,Status Quo Bias,Risk perception changes based on framing.,C
+S1058,Loss Aversion,The way choices are presented affects decisions.,A
+S1059,Prospect Theory,Risk perception changes based on framing.,B
+S1060,Prospect Theory,Immediate rewards are valued more than future rewards.,C
+S1061,Loss Aversion,The way choices are presented affects decisions.,C-
+S1062,Hyperbolic Discounting,Individuals assign more value to things they own.,B
+S1063,Loss Aversion,Choice architecture can influence decisions.,C
+S1064,Loss Aversion,People fear losses more than they value gains.,B-
+S1065,Hyperbolic Discounting,People mentally separate their money into different categories.,D
+S1066,Sunk Cost Fallacy,The way choices are presented affects decisions.,F
+S1067,Mental Accounting,People rely too much on initial information.,C
+S1068,Mental Accounting,Risk perception changes based on framing.,A
+S1069,Anchoring Bias,Risk perception changes based on framing.,B+
+S1070,Endowment Effect,Individuals assign more value to things they own.,C+
+S1071,Framing Effect,People rely too much on initial information.,A
+S1072,Mental Accounting,People fear losses more than they value gains.,B-
+S1073,Framing Effect,Immediate rewards are valued more than future rewards.,B-
+S1074,Endowment Effect,People mentally separate their money into different categories.,D
+S1075,Framing Effect,People rely too much on initial information.,B+
+S1076,Sunk Cost Fallacy,People mentally separate their money into different categories.,B+
+S1077,Loss Aversion,People fear losses more than they value gains.,A+
+S1078,Framing Effect,Individuals assign more value to things they own.,C-
+S1079,Status Quo Bias,The way choices are presented affects decisions.,B-
+S1080,Status Quo Bias,The way choices are presented affects decisions.,A
+S1081,Endowment Effect,Past investments affect future decisions irrationally.,B-
+S1082,Endowment Effect,The way choices are presented affects decisions.,A
+S1083,Framing Effect,Past investments affect future decisions irrationally.,C+
+S1084,Hyperbolic Discounting,People rely too much on initial information.,B-
+S1085,Prospect Theory,People rely too much on initial information.,F
+S1086,Loss Aversion,Past investments affect future decisions irrationally.,F
+S1087,Prospect Theory,Individuals assign more value to things they own.,A+
+S1088,Framing Effect,Risk perception changes based on framing.,F
+S1089,Prospect Theory,Risk perception changes based on framing.,A
+S1090,Loss Aversion,People prefer the current state over change.,A+
+S1091,Endowment Effect,The way choices are presented affects decisions.,D
+S1092,Endowment Effect,Individuals assign more value to things they own.,A
+S1093,Prospect Theory,People fear losses more than they value gains.,F
+S1094,Framing Effect,People prefer the current state over change.,C-
+S1095,Hyperbolic Discounting,Risk perception changes based on framing.,C-
+S1096,Status Quo Bias,Individuals assign more value to things they own.,C
+S1097,Status Quo Bias,The way choices are presented affects decisions.,C-
+S1098,Loss Aversion,People prefer the current state over change.,C
+S1099,Sunk Cost Fallacy,Risk perception changes based on framing.,F
