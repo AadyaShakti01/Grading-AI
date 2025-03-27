@@ -1,38 +1,46 @@
 import streamlit as st
-from transformers import AutoTokenizer, AutoModelForSequenceClassification
+from transformers import AutoTokenizer, AutoModelForMaskedLM, pipeline
 import torch
 
-# ✅ Define the correct model name from Hugging Face
+# ✅ Load the correct model (Masked LM)
 MODEL_NAME = "google-bert/bert-base-uncased"
-
-# Load tokenizer and model
 tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
-model = AutoModelForSequenceClassification.from_pretrained(MODEL_NAME)
+model = AutoModelForMaskedLM.from_pretrained(MODEL_NAME)
 
-# Grade mapping
-grade_mapping = {0: "A+", 1: "A", 2: "B", 3: "C", 4: "D", 5: "F"}
+# ✅ Use a fill-mask pipeline
+fill_mask = pipeline("fill-mask", model=model, tokenizer=tokenizer)
 
-# Function to predict grade
-def predict_grade(concept, student_response):
-    combined_input = f"Concept: {concept}. Student Answer: {student_response}"
+# ✅ Function to check response relevance
+def check_relevance(concept, student_response):
+    combined_input = f"{concept}. {student_response}"
+    
+    # Tokenize input
     inputs = tokenizer(combined_input, return_tensors="pt", truncation=True, padding=True)
-    with torch.no_grad():
-        outputs = model(**inputs)
-    predicted_class = torch.argmax(outputs.logits, dim=1).item()
-    return grade_mapping[predicted_class]
+    
+    # Get model predictions (Masking a random token to check contextual relevance)
+    mask_token = tokenizer.mask_token
+    test_sentence = f"{concept}. {mask_token} {student_response}"  # Insert [MASK] for relevance check
+    predictions = fill_mask(test_sentence)
 
-# Streamlit UI
-st.title("Student Grade Prediction")
-st.write("Enter the concept and the student's response:")
+    # Extract top predicted words
+    top_words = [pred["token_str"] for pred in predictions]
 
-# Input fields
+    # Basic relevance score based on prediction confidence
+    score = sum(pred["score"] for pred in predictions) / len(predictions)
+
+    return f"Relevance Score: {round(score * 100, 2)}%", top_words
+
+# ✅ Streamlit UI
+st.title("Student Answer Relevance Check")
+st.write("Enter the concept and student's response to check relevance:")
+
 concept = st.text_input("Concept (What was taught?)")
 student_answer = st.text_area("Student's Answer", height=200)
 
-# Button to trigger prediction
-if st.button("Predict Grade"):
+if st.button("Check Relevance"):
     if concept and student_answer:
-        predicted_grade = predict_grade(concept, student_answer)
-        st.success(f"Predicted Grade: {predicted_grade}")
+        relevance_score, suggested_words = check_relevance(concept, student_answer)
+        st.success(f"{relevance_score}")
+        st.write(f"Suggested Words for Improvement: {', '.join(suggested_words)}")
     else:
         st.warning("Please enter both the concept and student response.")
