@@ -1,54 +1,38 @@
 import streamlit as st
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
 import torch
-from huggingface_hub import login
 
-# 🔹 Authenticate with Hugging Face (Streamlit Secrets)
-try:
-    HF_TOKEN = st.secrets["huggingface"]["token"]
-    login(token=HF_TOKEN)
-    st.success("✅ Successfully authenticated with Hugging Face!")
-except Exception as e:
-    st.error(f"⚠️ Authentication failed: {e}")
-    st.stop()
+# ✅ Define the correct model name from Hugging Face
+MODEL_NAME = "google-bert/bert-base-uncased"
 
-# 🔹 Load fine-tuned model from Hugging Face
-MODEL_NAME = "your-huggingface-username/your-grading-model"  # Change this!
+# Load tokenizer and model
+tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
+model = AutoModelForSequenceClassification.from_pretrained(MODEL_NAME)
 
-try:
-    tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
-    model = AutoModelForSequenceClassification.from_pretrained(MODEL_NAME)
-    st.success("✅ Model loaded successfully!")
-except Exception as e:
-    st.error(f"⚠️ Model loading failed: {e}")
-    st.stop()
-
-# 🔹 Grade Mapping
+# Grade mapping
 grade_mapping = {0: "A+", 1: "A", 2: "B", 3: "C", 4: "D", 5: "F"}
 
-# 🔹 Prediction Function (Uses both concept & student response)
+# Function to predict grade
 def predict_grade(concept, student_response):
-    input_text = f"Concept: {concept} [SEP] Student Answer: {student_response}"
-    inputs = tokenizer(input_text, return_tensors="pt", truncation=True, padding=True)
-    
+    combined_input = f"Concept: {concept}. Student Answer: {student_response}"
+    inputs = tokenizer(combined_input, return_tensors="pt", truncation=True, padding=True)
     with torch.no_grad():
         outputs = model(**inputs)
-    
     predicted_class = torch.argmax(outputs.logits, dim=1).item()
-    return grade_mapping.get(predicted_class, "Unknown")
+    return grade_mapping[predicted_class]
 
-# 🔹 Streamlit UI
-st.title("📚 Student Grade Predictor")
-st.write("Enter the expected concept and the student's response to predict the grade.")
+# Streamlit UI
+st.title("Student Grade Prediction")
+st.write("Enter the concept and the student's response:")
 
-# 🔹 Input Fields
-concept = st.text_area("✅ Expected Answer (Concept)", height=150)
-student_answer = st.text_area("✍️ Student's Answer", height=150)
+# Input fields
+concept = st.text_input("Concept (What was taught?)")
+student_answer = st.text_area("Student's Answer", height=200)
 
-# 🔹 Predict Button
+# Button to trigger prediction
 if st.button("Predict Grade"):
-    if concept.strip() and student_answer.strip():
+    if concept and student_answer:
         predicted_grade = predict_grade(concept, student_answer)
-        st.success(f"🎯 Predicted Grade: **{predicted_grade}**")
+        st.success(f"Predicted Grade: {predicted_grade}")
     else:
-        st.warning("⚠️ Please enter both the expected concept and student response.")
+        st.warning("Please enter both the concept and student response.")
