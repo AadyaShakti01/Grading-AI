@@ -38,7 +38,7 @@ st.title("📚 AI-Powered Student Grading")
 st.write("Select the concept from the dropdown and enter the student's response to predict their grade.")
 
 # ✅ Dropdown for concept selection (NOW VISIBLE)
-selected_concept = st.selectbox("🧠 Select Concept", unique_concepts, index=0)
+concept = st.selectbox("Select Concept" options=df["Concept"].unique())
 
 # ✅ Text area for student's answer
 student_answer = st.text_area("📝 Student's Answer", height=150)
