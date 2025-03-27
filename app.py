@@ -3,39 +3,48 @@ from transformers import AutoTokenizer, AutoModelForSequenceClassification
 import torch
 from huggingface_hub import login
 
-# If you're using a Hugging Face model or private models, authenticate with the token (Streamlit Secrets)
-login(token=st.secrets["huggingface"]["token"])
+# 🔹 Authenticate with Hugging Face (Read from Streamlit Secrets)
+try:
+    HF_TOKEN = st.secrets["huggingface"]["token"]
+    login(token=HF_TOKEN)
+    st.success("✅ Successfully authenticated with Hugging Face!")
+except Exception as e:
+    st.error(f"⚠️ Authentication failed: {e}")
+    st.stop()
 
-# Model path (local or Hugging Face model name)
-# If you are using a Hugging Face model from the Hub, just use the model name like 'bert-base-uncased'
-model_path = "bert-base-uncased"  # Example Hugging Face model name
+# 🔹 Load your fine-tuned model from Hugging Face
+MODEL_NAME = "your-huggingface-username/your-grading-model"  # Replace with actual model
 
-# Load tokenizer and model
-tokenizer = AutoTokenizer.from_pretrained(model_path)
-model = AutoModelForSequenceClassification.from_pretrained(model_path)
+try:
+    tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
+    model = AutoModelForSequenceClassification.from_pretrained(MODEL_NAME)
+    st.success("✅ Model loaded successfully!")
+except Exception as e:
+    st.error(f"⚠️ Model loading failed: {e}")
+    st.stop()
 
-# Grade mapping (for your use case)
+# 🔹 Grade Mapping
 grade_mapping = {0: "A+", 1: "A", 2: "B", 3: "C", 4: "D", 5: "F"}
 
-# Function to predict grade
+# 🔹 Prediction Function
 def predict_grade(student_response):
     inputs = tokenizer(student_response, return_tensors="pt", truncation=True, padding=True)
     with torch.no_grad():
         outputs = model(**inputs)
     predicted_class = torch.argmax(outputs.logits, dim=1).item()
-    return grade_mapping[predicted_class]
+    return grade_mapping.get(predicted_class, "Unknown")
 
-# Streamlit UI
-st.title("Student Grade Prediction")
-st.write("Enter the student's response to predict the grade:")
+# 🔹 Streamlit UI
+st.title("📚 Student Grade Predictor")
+st.write("Enter a student's response below, and the model will predict the grade.")
 
-# Input box for student’s response
+# 🔹 Input Box
 student_answer = st.text_area("Student's Answer", height=200)
 
-# Button to trigger prediction
+# 🔹 Predict Button
 if st.button("Predict Grade"):
-    if student_answer:
+    if student_answer.strip():
         predicted_grade = predict_grade(student_answer)
-        st.success(f"Predicted Grade: {predicted_grade}")
+        st.success(f"🎯 Predicted Grade: **{predicted_grade}**")
     else:
-        st.warning("Please enter a student response.")
+        st.warning("⚠️ Please enter a student response.")
